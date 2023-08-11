@@ -12,6 +12,10 @@ const cmdargs = require("../lib/util/cmd.helper.js");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 
+// we want buffers as hex...
+Buffer.prototype.toJSON = function() {
+  return Buffer.prototype.toString.call(this, "hex");
+};
 
 function startXmysql(sqlConfig) {
   /**************** START : setup express ****************/
